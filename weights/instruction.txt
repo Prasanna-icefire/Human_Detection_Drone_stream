@@ -1,0 +1,8 @@
+Hi,
+In this directory you paste the weights u download from https://pjreddie.com/media/files/yolov3.weights
+
+Having done this,
+execute convert weights.py
+
+After this, in the video.py, edit and change the path of weights that is, weightfile='/weights/yolov3_weights.tf'
+Then run the video.py to see yourself being detected along with other objects!

@@ -5,6 +5,8 @@ import cv2
 import time
 
 
+
+
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
 assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
@@ -19,6 +21,11 @@ confidence_threshold = 0.5
 cfgfile = 'cfg/yolov3.cfg'
 weightfile = '/home/icefire/ML/Yolo_object/weights/yolov3_weights.tf'
 def main():
+    fourcc = cv2.VideoWriter_fourcc(*'XVID') 
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT)) 
+
+ 
+
     model = YOLOv3Net(cfgfile,model_size,num_classes)
     model.load_weights(weightfile)
     class_names = load_class_names(class_name)
@@ -64,6 +71,7 @@ def main():
                                         cv2.putText(img,'WARNING',(int(mid_x*cv2.CAP_PROP_FRAME_WIDTH)-50,int(mid_y*cv2.CAP_PROP_FRAME_HEIGHT)),cv2.FONT_HERSHEY_SIMPLEX,1.0,(0,0,255),3)
                     '''
             cv2.imshow(win_name, img)
+            out.write(img)
             stop = time.time()
             seconds = stop - start
             # print("Time taken : {0} seconds".format(seconds))
@@ -76,6 +84,7 @@ def main():
     finally:
         cv2.destroyAllWindows()
         cap.release()
+        out.release()
         print('Detections have been performed successfully.')
 if __name__ == '__main__':
     main()

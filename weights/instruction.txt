@@ -1,5 +1,5 @@
 Hi,
-In this directory you paste the weights u download from https://pjreddie.com/media/files/yolov3.weights
+In this directory you paste the weights u download from https://www.dropbox.com/s/xub6nytmtbe8zzv/yolov3.weights?dl=0
 
 Having done this,
 execute convert weights.py

@@ -39,6 +39,7 @@ def main():
             resized_frame = tf.expand_dims(frame, 0)
             resized_frame = resize_image(resized_frame, (model_size[0],model_size[1]))
             pred = model.predict(resized_frame)
+            
             boxes, scores, classes, nums = output_boxes( \
                 pred, model_size,
                 max_output_size=max_output_size,
@@ -46,13 +47,10 @@ def main():
                 iou_threshold=iou_threshold,
                 confidence_threshold=confidence_threshold)
           
-            print(len(boxes))
-
-            #img
-           # print(int(pred))
+           
             img = draw_outputs(frame, boxes, scores, classes, nums, class_names)
-            for i,b in enumerate(boxes[0]):
-                    #print(class_names[])
+            for i,b in enumerate(boxes):
+                    
                     '''
                     if class_names[0][i] == 3 or classes[0][i] == 6 or classes[0][i] == 8:
                         

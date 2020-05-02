@@ -73,11 +73,11 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
         if int(classes[i]) == 0:# or int(classes[i]) == 2 or int(classes[i]) == 73:
             #print("Detected a Person or a truck or a car")
             apx_dis = 1 - ((x2y2[0] - x1y1[0])/640)
-            print(apx_dis)
-            print((x2y2[0] - x1y1[0])/640)
+            #print(apx_dis)
+            #print((x2y2[0] - x1y1[0])/640)
             if apx_dis <= 0.5:
                # if mid_x > 0.3 and mid_x < 0.7:
-                      print("Warning")
+                #      print("Warning")
                       img=cv2.putText(img,'WARNING',(x2y2),cv2.FONT_HERSHEY_SIMPLEX,1.0,(0,0,255),3)
                         
     return img

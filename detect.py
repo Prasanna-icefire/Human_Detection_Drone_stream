@@ -46,7 +46,7 @@ def main():
                 iou_threshold=iou_threshold,
                 confidence_threshold=confidence_threshold)
           
-
+            print(len(boxes))
 
             #img
            # print(int(pred))

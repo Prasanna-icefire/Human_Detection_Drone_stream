@@ -72,8 +72,6 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
         
         if int(classes[i]) == 0:# or int(classes[i]) == 2 or int(classes[i]) == 73:
             #print("Detected a Person or a truck or a car")
-            mid_x = (x2y2[0] + x1y1[0])/2
-            mid_y = (boxes[i][2] + boxes[i][0])/2
             apx_dis = 1 - ((x2y2[0] - x1y1[0])/640)
             print(apx_dis)
             print((x2y2[0] - x1y1[0])/640)

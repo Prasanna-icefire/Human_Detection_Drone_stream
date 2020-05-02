@@ -45,7 +45,26 @@ def main():
                 max_output_size_per_class=max_output_size_per_class,
                 iou_threshold=iou_threshold,
                 confidence_threshold=confidence_threshold)
+          
+
+
+            #img
+           # print(int(pred))
             img = draw_outputs(frame, boxes, scores, classes, nums, class_names)
+            for i,b in enumerate(boxes[0]):
+                    #print(class_names[])
+                    '''
+                    if class_names[0][i] == 3 or classes[0][i] == 6 or classes[0][i] == 8:
+                        
+                        if scores[0][i] > 0.5:
+                            mid_x = (boxes[0][i][3] + boxes[0][i][1])/2
+                            mid_y = (boxes[0][i][2] + boxes[0][i][0])/2
+                            apx_dis = round((1-(boxes[0][i][3] - boxes[0][i][1]))**4,1)
+                            cv2.putText(img,'{}'.format(apx_dis),(int(mid_x*cv2.CAP_PROP_FRAME_WIDTH),int(mid_y*cv2.CAP_PROP_FRAME_HEIGHT)),cv2.FONT_HERSHEY_SIMPLEX,0.7,(255,255,255),2)
+                            if apx_dis <= 0.5:
+                                if mid_x > 0.3 and mid_x < 0.7:
+                                        cv2.putText(img,'WARNING',(int(mid_x*cv2.CAP_PROP_FRAME_WIDTH)-50,int(mid_y*cv2.CAP_PROP_FRAME_HEIGHT)),cv2.FONT_HERSHEY_SIMPLEX,1.0,(0,0,255),3)
+                    '''
             cv2.imshow(win_name, img)
             stop = time.time()
             seconds = stop - start

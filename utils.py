@@ -51,6 +51,7 @@ def output_boxes(inputs,model_size, max_output_size, max_output_size_per_class,
     boxes_dicts = non_max_suppression(inputs, model_size, max_output_size,
                                       max_output_size_per_class, iou_threshold, confidence_threshold)
 
+    print(classes)
     return boxes_dicts
 
 def draw_outputs(img, boxes, objectness, classes, nums, class_names):

@@ -77,10 +77,11 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
             
             #print(apx_dis)
             #print((x2y2[0] - x1y1[0])/640)
-            if apx_dis <= 1:
+            img=cv2.putText(img,str(k),(x2y2),cv2.FONT_HERSHEY_SIMPLEX,1.0,(0,0,255),3)
+            if apx_dis <= 0.5:
                # if mid_x > 0.3 and mid_x < 0.7:
                 #      print("Warning")
-                      img=cv2.putText(img,str(k),(x2y2),cv2.FONT_HERSHEY_SIMPLEX,1.0,(0,0,255),3)
+                      img=cv2.putText(img,'Too Close,move back!',(x2y2),cv2.FONT_HERSHEY_SIMPLEX,1.0,(0,0,255),3)
         #prints the number of preople present at the frame in a given time print(k)              
                         
     return img

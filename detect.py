@@ -3,6 +3,7 @@ from utils import load_class_names, output_boxes, draw_outputs, resize_image
 from yolov3 import YOLOv3Net
 import cv2
 import time
+from imutils.video import VideoStream
 
 
 
@@ -21,8 +22,8 @@ confidence_threshold = 0.5
 cfgfile = 'cfg/yolov3.cfg'
 weightfile = '/home/icefire/ML/Yolo_object/weights/yolov3_weights.tf'
 def main():
-    fourcc = cv2.VideoWriter_fourcc(*'XVID') 
-    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT)) 
+
+
 
  
 
@@ -34,9 +35,14 @@ def main():
     #specify the vidoe input.
     # 0 means input from cam 0.
     # For vidio, just change the 0 to video path
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture('data/test1.mp4')
+
+
     frame_size = (cap.get(cv2.CAP_PROP_FRAME_WIDTH),
                   cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    fourcc = cv2.VideoWriter_fourcc(*'XVID') 
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (int(frame_size[0]),int(frame_size[1])))               
     try:
         while True:
             start = time.time()
@@ -56,22 +62,8 @@ def main():
           
            
             img = draw_outputs(frame, boxes, scores, classes, nums, class_names)
-            for i,b in enumerate(boxes):
-                    
-                    '''
-                    if class_names[0][i] == 3 or classes[0][i] == 6 or classes[0][i] == 8:
-                        
-                        if scores[0][i] > 0.5:
-                            mid_x = (boxes[0][i][3] + boxes[0][i][1])/2
-                            mid_y = (boxes[0][i][2] + boxes[0][i][0])/2
-                            apx_dis = round((1-(boxes[0][i][3] - boxes[0][i][1]))**4,1)
-                            cv2.putText(img,'{}'.format(apx_dis),(int(mid_x*cv2.CAP_PROP_FRAME_WIDTH),int(mid_y*cv2.CAP_PROP_FRAME_HEIGHT)),cv2.FONT_HERSHEY_SIMPLEX,0.7,(255,255,255),2)
-                            if apx_dis <= 0.5:
-                                if mid_x > 0.3 and mid_x < 0.7:
-                                        cv2.putText(img,'WARNING',(int(mid_x*cv2.CAP_PROP_FRAME_WIDTH)-50,int(mid_y*cv2.CAP_PROP_FRAME_HEIGHT)),cv2.FONT_HERSHEY_SIMPLEX,1.0,(0,0,255),3)
-                    '''
-            cv2.imshow(win_name, img)
             out.write(img)
+            cv2.imshow(win_name, img)
             stop = time.time()
             seconds = stop - start
             # print("Time taken : {0} seconds".format(seconds))
